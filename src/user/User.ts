@@ -1,3 +1,5 @@
+import { IUser } from "../interfaces/Interfaces";
+
 // User Entity Class
 class User implements IUser {
   public id: string;
@@ -41,3 +43,5 @@ class User implements IUser {
     };
   }
 }
+
+export default User;

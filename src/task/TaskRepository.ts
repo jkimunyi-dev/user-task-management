@@ -1,3 +1,6 @@
+import { TaskPriority, TaskStatus, ITask } from "../interfaces/Interfaces";
+import Task from "./Task";
+
 class TaskRepository {
   private tasks: Map<string, Task> = new Map();
   private userTaskIndex: Map<string, Set<string>> = new Map(); // userId -> Set of taskIds
@@ -16,7 +19,7 @@ class TaskRepository {
   public findById(id: string): Task {
     const task = this.tasks.get(id);
     if (!task) {
-      throw new TaskNotFoundError(id);
+      throw new Error('Task not found');
     }
     return task;
   }
@@ -109,3 +112,4 @@ class TaskRepository {
     return this.tasks.has(id);
   }
 }
+export default TaskRepository;

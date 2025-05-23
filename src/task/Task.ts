@@ -1,3 +1,5 @@
+import { ITask, TaskStatus, TaskPriority } from "../interfaces/Interfaces";
+
 // Task Entity Class
 class Task implements ITask {
   public id: string;
@@ -79,3 +81,5 @@ class Task implements ITask {
     };
   }
 }
+
+export default Task;

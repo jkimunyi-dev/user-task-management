@@ -1,10 +1,13 @@
+import { IUser } from "../interfaces/Interfaces";
+import User from "./User";
+
 class UserRepository {
   private users: Map<string, User> = new Map();
   private emailIndex: Map<string, string> = new Map(); // email -> userId mapping
 
   public create(name: string, email: string, role?: string): User {
     if (this.emailIndex.has(email)) {
-      throw new DuplicateEmailError(email);
+      throw new Error('User with this email already exists');
     }
 
     const user = new User(name, email, role);
@@ -16,7 +19,7 @@ class UserRepository {
   public findById(id: string): User {
     const user = this.users.get(id);
     if (!user) {
-      throw new UserNotFoundError(id);
+      throw new Error('User not found');
     }
     return user;
   }
@@ -53,3 +56,6 @@ class UserRepository {
     return this.users.has(id);
   }
 }
+
+
+export default UserRepository;

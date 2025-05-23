@@ -32,3 +32,5 @@ interface ITask {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export { IUser, ITask, TaskStatus, TaskPriority };
