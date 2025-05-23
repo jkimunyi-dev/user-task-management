@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("./User"));
+const __1 = require("..");
 class UserRepository {
     constructor() {
         this.users = new Map();
@@ -11,9 +8,9 @@ class UserRepository {
     }
     create(name, email, role) {
         if (this.emailIndex.has(email)) {
-            throw new Error('User with this email already exists');
+            throw new Error('User with email already exists');
         }
-        const user = new User_1.default(name, email, role);
+        const user = new __1.User(name, email, role);
         this.users.set(user.id, user);
         this.emailIndex.set(email, user.id);
         return user;

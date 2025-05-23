@@ -1,16 +1,12 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Task_1 = __importDefault(require("./Task"));
 class TaskRepository {
     constructor() {
         this.tasks = new Map();
         this.userTaskIndex = new Map(); // userId -> Set of taskIds
     }
     create(title, description, priority, dueDate) {
-        const task = new Task_1.default(title, description, priority, dueDate);
+        const task = new Task(title, description, priority, dueDate);
         this.tasks.set(task.id, task);
         return task;
     }
