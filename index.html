@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User & Task Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User & Task Management System</h1>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalUsers">0</span>
+                    <span class="stat-label">Users</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalTasks">0</span>
+                    <span class="stat-label">Tasks</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="assignedTasks">0</span>
+                    <span class="stat-label">Assigned</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-button active" data-tab="users">Users</button>
+                <button class="tab-button" data-tab="tasks">Tasks</button>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>User Management</h2>
+                    <button class="btn btn-primary" id="addUserBtn">Add User</button>
+                </div>
+
+                <div class="users-grid" id="usersGrid">
+                    <!-- Users will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Tasks Tab -->
+            <div id="tasks-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Task Management</h2>
+                    <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
+                </div>
+
+                <div class="filters">
+                    <select id="statusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <select id="priorityFilter">
+                        <option value="">All Priorities</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                    <select id="assigneeFilter">
+                        <option value="">All Assignees</option>
+                        <option value="unassigned">Unassigned</option>
+                    </select>
+                </div>
+
+                <div class="tasks-grid" id="tasksGrid">
+                    <!-- Tasks will be rendered here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- User Modal -->
+        <div id="userModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="userModalTitle">Add User</h3>
+                    <span class="close" id="closeUserModal">&times;</span>
+                </div>
+                <form id="userForm">
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Role:</label>
+                        <input type="text" id="userRole" placeholder="user">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelUserBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task Modal -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="taskModalTitle">Add Task</h3>
+                    <span class="close" id="closeTaskModal">&times;</span>
+                </div>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Title:</label>
+                        <input type="text" id="taskTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Description:</label>
+                        <textarea id="taskDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskPriority">Priority:</label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDueDate">Due Date:</label>
+                        <input type="date" id="taskDueDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="taskAssignee">Assign to:</label>
+                        <select id="taskAssignee">
+                            <option value="">Unassigned</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelTaskBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Confirm Action</h3>
+                    <span class="close" id="closeConfirmModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmMessage">Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelConfirmBtn">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dist/main.js"></script>
+</body>
+</html>
