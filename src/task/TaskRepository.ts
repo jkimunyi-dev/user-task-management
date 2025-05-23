@@ -1,9 +1,6 @@
-import { TaskPriority, TaskStatus, ITask } from "../interfaces/Interfaces";
-import Task from "./Task";
-
 class TaskRepository {
-  private tasks: Map<string, Task> = new Map();
-  private userTaskIndex: Map<string, Set<string>> = new Map(); // userId -> Set of taskIds
+  public tasks: Map<string, Task> = new Map();
+  public userTaskIndex: Map<string, Set<string>> = new Map(); // userId -> Set of taskIds
 
   public create(
     title: string,
@@ -91,14 +88,14 @@ class TaskRepository {
     }
   }
 
-  private addToUserIndex(userId: string, taskId: string): void {
+  public addToUserIndex(userId: string, taskId: string): void {
     if (!this.userTaskIndex.has(userId)) {
       this.userTaskIndex.set(userId, new Set());
     }
     this.userTaskIndex.get(userId)!.add(taskId);
   }
 
-  private removeFromUserIndex(userId: string, taskId: string): void {
+  public removeFromUserIndex(userId: string, taskId: string): void {
     const userTasks = this.userTaskIndex.get(userId);
     if (userTasks) {
       userTasks.delete(taskId);
@@ -112,4 +109,6 @@ class TaskRepository {
     return this.tasks.has(id);
   }
 }
+
+
 export default TaskRepository;

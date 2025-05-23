@@ -1,5 +1,4 @@
-import { IUser } from "../interfaces/Interfaces";
-import User from "./User";
+import { User, IUser } from "..";
 
 class UserRepository {
   private users: Map<string, User> = new Map();
@@ -7,7 +6,7 @@ class UserRepository {
 
   public create(name: string, email: string, role?: string): User {
     if (this.emailIndex.has(email)) {
-      throw new Error('User with this email already exists');
+      throw new Error('User with email already exists');
     }
 
     const user = new User(name, email, role);
@@ -56,6 +55,5 @@ class UserRepository {
     return this.users.has(id);
   }
 }
-
 
 export default UserRepository;

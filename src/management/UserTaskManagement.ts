@@ -1,12 +1,9 @@
-import { IUser, TaskPriority, TaskStatus, ITask } from "../interfaces/Interfaces";
-import Task from "../task/Task";
 import TaskRepository from "../task/TaskRepository";
-import User from "../user/User";
 import UserRepository from "../user/UserRepository";
 
 class UserTaskManagementSystem {
-  private userRepository: UserRepository;
-  private taskRepository: TaskRepository;
+  public userRepository: UserRepository;
+  public taskRepository: TaskRepository;
 
   constructor() {
     this.userRepository = new UserRepository();
