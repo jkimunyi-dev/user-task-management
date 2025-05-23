@@ -18,7 +18,7 @@ class User implements IUser {
     this.updatedAt = new Date();
   }
 
-  private generateId(): string {
+  public generateId(): string {
     return 'user_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
   }
 
